@@ -1,0 +1,48 @@
+html, body{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+.header{
+    width:100%;
+    height: 10vh;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+
+}
+
+.nav{
+    width: 17vw;
+    height: 100vh;
+    background-color: rgb(253, 236, 236);
+}
+
+.main{
+    width: 83vw;
+    height: 100vh;
+    background-color: rgb(255, 200, 200);
+}
+
+.calendar-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.calendar-grid{
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+}
+
+.today{
+    background-color: rgb(255, 145, 163);
+}
