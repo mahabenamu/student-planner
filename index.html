@@ -7,11 +7,26 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <div class="header"><h1>my planner ♡</h1></div>
+        
 <div class="container">
-    <div class="nav">
-    </div>
+    
     <div class="main">
+
+        <div class="header"><h1>my planner ♡</h1></div>
+
+        <div class="cards">
+
+            <div class="today-date">
+                <h2 id="today-day"></h2>
+                <h1 id="today-full-date"></h1>
+                <p id="today-year"></p>
+            </div>
+
+            <div class="plan">todays plans</div>
+            <div class="tasks-left">tasks left</div>
+        
+        </div>
+       <div class="mainbox">
         <div class="calendar">
             <div class="calendar-header">
                 <button id="prev-month"> <-- </button>
@@ -19,6 +34,18 @@
                 <button id="next-month"> --> </button>
             </div>
             <div class="calendar-grid" id="calendar-grid"></div>
+            
+        </div>
+        <div class="main-side">
+
+                <div class="todolist">
+                    <h2>to-do list</h2>
+                    <ul id="tasks"></ul>
+                    <button onclick="addTask()" id="addtask">+ add a task..</button>
+                </div>
+
+                <div class="notes">notes</div>
+            </div>
         </div>
     </div>
 </div>

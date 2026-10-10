@@ -1,12 +1,21 @@
 const today = new Date();
 
-console.log(today);
+document.getElementById("today-day").textContent =
+ today.toLocaleDateString("en-GB", { weekday: "long"});
+
+document.getElementById("today-full-date").textContent =
+ today.toLocaleDateString("en-GB",{
+    day: "numeric",
+    month: "long"
+ });
+
+ document.getElementById("today-year").textContent = 
+ today.getFullYear();
 
 let currentMonth = today.getMonth();
 let currentYear = today.getFullYear();
 
-console.log(currentMonth);
-console.log(currentYear);
+
 
 const monthYear = document.getElementById("month-year");
 const calendarGrid = document.getElementById("calendar-grid");
@@ -61,3 +70,10 @@ prevButton.addEventListener("click", function() {
     currentMonth--;
     generateCalendar();
 })
+
+
+function addTask(){
+    let inputBox = document.createElement("input");
+    tasks.appendChild(inputBox);
+
+}
