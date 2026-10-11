@@ -32,20 +32,44 @@ html, body{
 .today-date{
     background: white;
     border-radius: 30px;
-    width: 33%;
+    width: 20%;
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+#today-day{
+    font-size: 20px;
+    margin:0;
+    padding: 0;
+
+}
+
+#today-full-date{
+    font-size: 25px;
+    margin:0;
+    padding: 0;
+
+}
+
+#today-year{
+font-size: 18px;
+margin:0;
+    padding: 0;
 }
 
 .plan{
     background: white;
     border-radius: 30px;
-    width: 33%;
+    width: 39%;
 }
 
 .tasks-left{
     background: white;
     border-radius: 30px;
-    width: 33%;
+    width: 39%;
 }
 
 a{
@@ -140,6 +164,23 @@ a{
     background:#E3FED1ff;
     border-radius: 20px;
     padding: 10px;
+}
+
+.completed{
+    text-decoration: line-through;
+}
+
+#progress-bar{
+    width: 100%;
+    height: 10px;
+    background-color: #DEFFAAff ;
+    overflow: hidden;
+}
+
+#progress-fill{
+    width: 0;
+    height: 100%;
+    background-color: #40463Eff
 }
 
 

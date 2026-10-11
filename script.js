@@ -71,9 +71,134 @@ prevButton.addEventListener("click", function() {
     generateCalendar();
 })
 
+const tasks = document.getElementById("tasks");
+
+function saveTasks() {
+    let savedTasks = [];
+
+    tasks.querySelectorAll("li").forEach(function(listItem){
+        let checkbox = listItem.querySelector('input[type="checkbox"]');
+        let task = listItem.querySelector("span");
+
+        if(checkbox && task) {
+            savedTasks.push({
+                text: task.textContent,
+                completed: checkbox.checked
+            });
+        }
+    });
+
+    localStorage.setItem("tasks", JSON.stringify(savedTasks));
+}
 
 function addTask(){
+    let listItem = document.createElement("li");
     let inputBox = document.createElement("input");
-    tasks.appendChild(inputBox);
+    
+    inputBox.type = "text";
+    inputBox.placeholder = "write a task...";
 
+    inputBox.addEventListener("keydown", function(event){
+        if (event.key === "Enter") {
+            let taskText = inputBox.value.trim();
+
+          if (taskText === "") {
+            return;
+          }
+          
+          let checkbox = document.createElement("input");
+          checkbox.type = "checkbox";
+
+          let task = document.createElement("span");
+          task.textContent = taskText;
+
+          let deleteButton = document.createElement("button");
+          deleteButton.textContent = "x";
+
+          deleteButton.addEventListener("click", function(){
+            listItem.remove();
+            saveTasks();
+            updateTaskCount();
+          });
+
+          checkbox.addEventListener("change", function() {
+            task.classList.toggle("completed", checkbox.checked);
+            saveTasks();
+            updateTaskCount();
+            });
+
+          inputBox.replaceWith(checkbox);
+          checkbox.after(task);
+          task.after(deleteButton);
+          saveTasks();
+          updateTaskCount();
+
+        }
+    });
+
+    listItem.appendChild(inputBox);
+    tasks.appendChild(listItem);
+
+    inputBox.focus();
+
+};
+
+function loadTasks() {
+    let savedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+    savedTasks.forEach(function(savedTask) {
+
+        let listItem = document.createElement("li");
+
+        let checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.checked = savedTask.completed;
+
+        let task = document.createElement("span");
+        task.textContent = savedTask.text;
+        task.classList.toggle("completed", checkbox.checked);
+
+        let deleteButton = document.createElement("button");
+        deleteButton.textContent = "x";
+
+        deleteButton.addEventListener("click", function(){
+            listItem.remove();
+            saveTasks();
+            updateTaskCount();
+          });
+
+          checkbox.addEventListener("change", function() {
+            task.classList.toggle("completed", checkbox.checked);
+            saveTasks();
+            updateTaskCount();
+            });
+
+        listItem.appendChild(checkbox);
+        listItem.appendChild(task);
+        listItem.appendChild(deleteButton);
+
+        tasks.appendChild(listItem);
+
+    });
+
+    updateTaskCount();
+};
+
+loadTasks();
+
+function updateTaskCount() {
+    let allTasks = tasks.querySelectorAll("li");
+    let totalTasks = allTasks.length;
+    let completedTasks = tasks.querySelectorAll('input[type="checkbox"]:checked').length;
+    let tasksLeft = totalTasks - completedTasks;
+
+    document.getElementById("task-count").textContent = tasksLeft + "/" + totalTasks;
+
+    let progress = 0;
+
+    if(totalTasks > 0) {
+        progress = (completedTasks / totalTasks) * 100;
+    }
+
+    document.getElementById("progress-fill").style.width = progress + "%";
 }
