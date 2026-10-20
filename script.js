@@ -20,6 +20,9 @@ let currentYear = today.getFullYear();
 const monthYear = document.getElementById("month-year");
 const calendarGrid = document.getElementById("calendar-grid");
 
+let selectedDateKey = "";
+let events = JSON.parse(localStorage.getItem("events")) || {};
+
 function generateCalendar() {
     const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
 
@@ -46,14 +49,87 @@ function generateCalendar() {
     }
 
     for (let i = 1; i <= daysInMonth; i++){
-        if ( i === today.getDate() &&
-             currentMonth === today.getMonth() &&
-             currentYear === today.getFullYear()
-            ){calendarGrid.innerHTML += `<div class="today">${i}</div>`;} 
-            else {
-        calendarGrid.innerHTML += `<div class="date">${i}</div>`;
-        }
+        const dateKey = 
+         currentYear + "-" + 
+         String(currentMonth + 1).padStart(2, "0") + "-" +
+         String(i).padStart(2, "0");
+
+        const isToday = 
+         i === today.getDate() &&
+         currentMonth === today.getMonth() &&
+         currentYear === today.getFullYear();
+
+        const dateClass = isToday ? "today" : "date";
+
+        calendarGrid.innerHTML += `
+        <div class="${dateClass}">
+         <span>${i}</span>
+         <div class="event-list" data-date="${dateKey}"></div>
+        </div>
+        `;
     }
+
+    calendarGrid.querySelectorAll(".date, .today").forEach(function(dateCell){
+        dateCell.addEventListener("click", function(){
+            const day = Number(dateCell.querySelector("span").textContent);
+
+            const clickedDate = new Date(currentYear, currentMonth, day);
+
+            selectedDateKey = 
+               clickedDate.getFullYear() + "-" +
+               String(clickedDate.getMonth() + 1).padStart(2, "0") + "-" +
+               String(clickedDate.getDate()).padStart(2,"0");
+
+            eventForm.style.display = "block";
+
+            selectedDate.textContent = 
+               "plans for " + clickedDate.toLocaleDateString("en-GB", {
+                   day: "numeric",
+                   month: "long",
+                   year: "numeric"
+               });
+        });
+    });
+
+    displayEvents();
+
+}
+
+function displayEvents() {
+    document.querySelectorAll(".event-list").forEach(function(eventList) {
+        const dateKey = eventList.dataset.date;
+
+        eventList.innerHTML = "";
+
+        if (events[dateKey]) {
+            events[dateKey].forEach(function(title) {
+                const eventItem = document.createElement("div");
+
+                const eventText = document.createElement("span");
+                eventText.textContent = title;
+
+                const deleteButton = document.createElement("button");
+                deleteButton.textContent = "x";
+
+                deleteButton.addEventListener("click", function(event) {
+                    event.stopPropagation();
+                    
+                    events[dateKey].splice(index, 1);
+
+                    if (events[dateKey].length === 0) {
+                        delete events[dateKey];
+                    }
+
+                    localStorage.setItem("events", JSON.stringify(events));
+                });
+
+                eventItem.appendChild(eventText);
+                eventItem.appendChild(deleteButton);
+                eventList.appendChild(eventItem);
+
+            });
+        }
+    });
 }
 
 generateCalendar();
@@ -202,3 +278,43 @@ function updateTaskCount() {
 
     document.getElementById("progress-fill").style.width = progress + "%";
 }
+
+const notesContent = document.getElementById("notes-content");
+
+notesContent.addEventListener("input", function(){
+    localStorage.setItem("savedNotes", notesContent.value);
+});
+
+notesContent.value = localStorage.getItem("savedNotes") || "";
+
+const eventForm = document.getElementById("event-form");
+const selectedDate = document.getElementById("selected-date");
+const eventTitle = document.getElementById("event-title");
+const saveEventButton = document.getElementById("save-event");
+const cancelEventButton = document.getElementById("cancel-event");
+
+
+saveEventButton.addEventListener("click", function() {
+    const title = eventTitle.value.trim();
+
+    if(title === "") {
+        return;
+    }
+
+    if (!events[selectedDateKey]) {
+        events[selectedDateKey] = [];
+    }
+
+    events[selectedDateKey].push(title);
+
+    localStorage.setItem("events", JSON.stringify(events));
+    displayEvents();
+
+    eventTitle.value = "";
+    eventForm.style.display = "none";
+});
+
+cancelEventButton.addEventListener("click", function() {
+    eventTitle.value = "";
+    eventForm.style.display = "none";
+});

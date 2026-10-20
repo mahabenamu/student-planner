@@ -41,6 +41,14 @@
             <div class="calendar-grid" id="calendar-grid"></div>
             
         </div>
+        <div id="event-form">
+            <h3 id="selected-date">add a plan</h3>
+
+            <input type="text" id="event-title">
+
+            <button id="save-event">save event</button>
+            <button id="cancel-event">cancel</button>
+        </div>
         <div class="main-side">
 
                 <div class="todolist">
@@ -49,7 +57,12 @@
                     <button onclick="addTask()" id="addtask">+ add a task..</button>
                 </div>
 
-                <div class="notes">notes</div>
+                <div class="notes">
+                    <h2>notes</h2>
+                    <textarea id="notes-content" placeholder="..."></textarea>
+
+
+                </div>
             </div>
         </div>
     </div>
