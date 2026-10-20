@@ -102,7 +102,7 @@ function displayEvents() {
         eventList.innerHTML = "";
 
         if (events[dateKey]) {
-            events[dateKey].forEach(function(title) {
+            events[dateKey].forEach(function(title, index) {
                 const eventItem = document.createElement("div");
 
                 const eventText = document.createElement("span");
@@ -113,7 +113,6 @@ function displayEvents() {
 
                 deleteButton.addEventListener("click", function(event) {
                     event.stopPropagation();
-                    
                     events[dateKey].splice(index, 1);
 
                     if (events[dateKey].length === 0) {
@@ -121,6 +120,8 @@ function displayEvents() {
                     }
 
                     localStorage.setItem("events", JSON.stringify(events));
+                    displayEvents();
+                    displayTodayEvents();
                 });
 
                 eventItem.appendChild(eventText);
@@ -132,7 +133,30 @@ function displayEvents() {
     });
 }
 
+function displayTodayEvents() {
+    const todayEvents = document.getElementById("today-events");
+    todayEvents.innerHTML = "";
+
+    const todayKey =
+     today.getFullYear() + "-" +
+     String(today.getMonth() + 1).padStart(2, "0") + "-" +
+     String(today.getDate()).padStart(2, "0");
+
+    if (events[todayKey] && events[todayKey].length > 0) {
+        events[todayKey].forEach(function(title){
+            const eventItem = document.createElement("li");
+            eventItem.textContent = title;
+            todayEvents.appendChild(eventItem);
+        });
+    } else {
+        const emptyMessage = document.createElement("li");
+        emptyMessage.textContent = "nothing planned for today";
+        todayEvents.appendChild(emptyMessage);
+    }
+}
+
 generateCalendar();
+displayTodayEvents();
 
 const nextButton = document.getElementById("next-month");
 const prevButton = document.getElementById("prev-month");
@@ -309,6 +333,7 @@ saveEventButton.addEventListener("click", function() {
 
     localStorage.setItem("events", JSON.stringify(events));
     displayEvents();
+    displayTodayEvents();
 
     eventTitle.value = "";
     eventForm.style.display = "none";
