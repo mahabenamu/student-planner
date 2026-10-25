@@ -53,13 +53,14 @@ h1, h2, h3, p{
 
 .header h1{
     margin: 15px;
-    padding: 5px;
+    padding: 10px;
     font-family: "ham";
     font-size: 50px;
+    font-weight: 600;
     color: var(--charcoal-brown);
   font-weight: 400;
   font-style: normal;
-  letter-spacing: 10px;
+  letter-spacing: 15px;
     }
 
 .header{
@@ -88,7 +89,7 @@ h1, h2, h3, p{
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    border: 2px solid var(--pink-carnation);
+    border: 2px solid rgb(205, 222, 193);
 }
 
 #today-day{
@@ -118,7 +119,7 @@ margin:0;
     background-image: linear-gradient(var(--floral-white), var(--petal-frost));
     border-radius: 15px;
     width: 38%;
-    border: 2px solid var(--pink-carnation);
+    border: 2px solid rgb(237, 212, 229);
     padding: 20px;
     
    
@@ -142,10 +143,10 @@ margin:0;
 }
 
 .tasks-left{
-    background: white;
+    background-image: linear-gradient(rgb(245, 249, 255), var(--pale-sky));
     border-radius: 15px;
     width: 39%;
-    border: 2px solid var(--pink-carnation);
+    border: 2px solid rgb(202, 205, 209);
      padding: 20px;
    
 }
@@ -188,10 +189,13 @@ a{
 .calendar{
     width: 60%;
     margin: 20px;
-    background: none;
+    background-image: linear-gradient(var(--floral-white), rgb(255, 179, 232), var(--floral-white));
+    padding: 20px;
+    border-radius: 20px;
     font-family: "Gaegu";
     font-size: 25px;
     font-weight: 600;
+    border: 2px solid rgb(224, 199, 203);
 }
 
 .calendar-header{
@@ -212,28 +216,52 @@ a{
     
 }
 
+.calendar button{
+    outline: none;
+    border: none;
+    background: none;
+    font-family: "Gaegu";
+    font-size: 40px;
+    font-weight: 600;
+    color: var(--charcoal-brown);
+}
+
 .weekday{
-    background: var(--pink-orchid);
+    background-image: linear-gradient(rgb(249, 243, 246), var(--pink-carnation));
+    height: 7vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
 }
 
 .date{
-    background: var(--petal-frost);
-    height: 10vh;
+    background-image: linear-gradient(var(--floral-white), var(--petal-frost));
+    height: 15vh;
     border: 0.5px dotted white;
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 20px;
+    position: relative;
+    
 
 }
 
 .today{
-    background-color: rgb(255, 145, 163);
+    background-image: linear-gradient(rgb(255, 231, 242), var(--pink-carnation));
+    height: 15vh;
+    border: 0.5px dotted white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    
 }
 
 .main-side{
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
     width: 40%;
     margin-right: 20px;
 }
@@ -245,27 +273,91 @@ a{
 }
 
 .todolist{
-    background: #FCF9F0ff;
+    background-image: linear-gradient(rgb(255, 255, 255), var(--floral-white));
+    border: 2px solid rgb(234, 226, 201);
     min-height: 20vh;
-    padding: 0 20px 20px 20px;
-    margin-top: 19px;
-    
-
+    padding: 20px;
+    margin: 19px 0px 19px 10px;
+    border-radius: 15px;
 }
 
-#tasks{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+.todolist ul{
+    margin:0;
     padding:0;
 }
 
-#addtask{
+#tasks{
+    list-style-type: none;
+    font-size: 20px;
+    margin: 0;
+}
+
+#tasks input{
+    padding: 0;
+    margin: 0 15px 0 0;
+}
+
+.todolist li {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    font-size: 25px;
+}
+
+input{
     border: none;
+    border-radius: 15px;
+    padding: 5px;
+    font-family: "Gaegu";
+    font-size: 20px;
+}
+
+input[type="checkbox" i]{
+    align-self: center;
+    appearance:none;
+    height:10px;
+    width: 10px;
+    border: 1.5px dotted var(--charcoal-brown);
+    outline: none;
+    border-radius: 15px;
+
+}
+
+input[type="checkbox" i]:checked {
+    background-color: var(--charcoal-brown);
+}
+
+input:focus{
+    outline: var(--charcoal-brown);
+}
+
+.todolist span{
+    text-align: left;
+}
+
+.todolist li button{
+  margin-left: 30px;
+  border: none;
+  border-radius: 20px;
+  background-color: rgba(223, 222, 164, 0.683);
+  font-family: "Gaegu";
+  font-weight: 600;
+  padding: 2px 10px;
+  font-size: 20px;
+  text-align: center;
+}
+
+#addtask{
+    border: 1px dotted var(--charcoal-brown);
     cursor: pointer;
-    background:#E3FED1ff;
+    background:rgba(255, 252, 241, 0.909);
     border-radius: 20px;
     padding: 10px;
+    font-family: "Gaegu";
+    margin-top: 12px;
+    font-size: 20px;
+    color: var(--charcoal-brown);
 }
 
 .completed{
@@ -275,31 +367,85 @@ a{
 #progress-bar{
     width: 100%;
     height: 20px;
-    background-color: #DEFFAAff ;
+    background-color: var(--floral-white) ;
     overflow: hidden;
    margin-top:10px;
+   border-radius: 30px;
 }
 
 #progress-fill{
     width: 0;
     height: 100%;
-    background-color: #40463Eff
+    background-color: var(--lime-cream);
+    
 }
 
 .notes{
-    background: #DEFFAAff;
+    background-image: linear-gradient(rgb(252, 235, 248), var(--pink-orchid));
+    padding: 20px;
+    margin: 0 0px 0 10px;
+    border-radius: 15px;
+    border: 2px solid rgb(210, 181, 202);
 }
 
 #notes-content{
-    width: 90%;
+    justify-self: center;
+    width: 100%;
     min-height: 150px;
     resize: vertical;
+    border: none;
+    background: none;
+    font-family: "Gaegu";
+    font-size: 25px;
+    color: var(--charcoal-brown);
+}
+
+#notes-content:focus{
+    outline: var(--charcoal-brown);
 }
 
 #event-form{
     display: none;
+    position: absolute;
+    top: 70%;
+    left: 55%;
+    max-height: 50vh;
+    max-width: 50vw;
+    background-color: var(--floral-white);
+    border-radius: 20px;
+    font-size: 35px;
+    padding: 20px;
+    font-family: "berky";
+    
 }
 
+#event-title{
+    border: 2px dashed var(--charcoal-brown);
+    width: 100%;
+}
+
+#event-form button{
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 20px;
+    font-family: "Gaegu";
+    cursor: pointer;
+}
+
+.event-list{
+    font-size: 10px;
+    margin: 0 0 0 5px;
+    padding: 0;
+}
+
+.event-list button{
+    font-size: 10px;
+    padding: 0 3px;
+    margin: 0 0 0 5px;
+    background: var(--floral-white);
+    border-radius: 10px;
+}
 
 /* CSS HEX 
 --pink-carnation: #FD83B9ff;
