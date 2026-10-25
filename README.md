@@ -4,32 +4,32 @@ A cute, pastel-themed student planner created using HTML, CSS and Javascript. As
 
 ## Features:
 
-###Interactive Calendar and Event Planning
--Displays the current month and year
--Navigate between months using previous and next buttons
--Highlights the current date
--*Click on a date to create an event for that specfic day*
--*Displays saved events inside their corresponding calendar dates*
--Delete individual events
--Events are saved to the browser's local storage
+### Interactive Calendar and Event Planning
+- Displays the current month and year
+- Navigate between months using previous and next buttons
+- Highlights the current date
+- *Click on a date to create an event for that specfic day*
+- *Displays saved events inside their corresponding calendar dates*
+- Delete individual events
+- Events are saved to the browser's local storage
 
 ### To-Do List
--Add tasks using the task input
--Mark tasks as completes using checkboxes
--Delete tasks when they are no longer needed
--Save tasks and their completion status between visits
+- Add tasks using the task input
+- Mark tasks as completes using checkboxes
+- Delete tasks when they are no longer needed
+- Save tasks and their completion status between visits
 
 ### Notes
--Write and edit notes
--Notes are automatically saved using local storage
+- Write and edit notes
+- Notes are automatically saved using local storage
 
 ### Infocards
--Automatically display current date
--Display saved information, such as:
--Events (Plans) for current date, and
--Task progress and tracking, where
--*Number of incomplete tasks (from the to do list) are displayed along with total number of tasks*
--*Including a progress bar which reflects the proportion of completed tasks*
+- Automatically display current date
+- Display saved information, such as:
+- Events (Plans) for current date, and
+- Task progress and tracking, where
+- *Number of incomplete tasks (from the to do list) are displayed along with total number of tasks*
+- *Including a progress bar which reflects the proportion of completed tasks*
 
 ### Future Improvements:
 I will definitely have to debug all of this code again sometime. Other than that, I'm hoping to add a feature that allows you to colour code the events, and adding reminders and upcoming-deadline infos. I'll also be trying to improve the layout for mobile devices
