@@ -1,16 +1,66 @@
-html, body{
-    background-color: rgb(255, 200, 200);
-    margin: 0;
-    font-family: "Libre Caslon Text", Georgia, serif;
+:root {
+    --pink-carnation: #FD83B9ff;
+--petal-frost: #FFDEF1ff;
+--floral-white: #FCF9F0ff;
+--pale-sky: #C6DAF6ff;
+--icy-blue: #ACD6F7ff;
+--light-gold: #FFF091ff;
+--frosted-mint: #E3FED1ff;
+--lime-cream: #DEFFAAff;
+--charcoal-brown: #40463Eff;
+--pink-orchid: #E5B9DBff;
+
+
 }
+
+
+@font-face {
+    font-family: "ham";
+    src: url("HamIsCute-Regular.ttf");
+}
+
+
+@font-face {
+    font-family: "berky";
+    src: url("BERKY.ttf");
+}
+
+
+html, body{
+    
+    margin: 0;
+     font-family: "Gaegu", sans-serif;
+     color: var(--charcoal-brown);
+}
+
+body{
+    background-color: #FCF9F0;
+opacity: 1;
+background: repeating-linear-gradient(-45deg, #C6DAF6 0, #C6DAF6 9.299999999999999px, transparent 9.299999999999999px, transparent 18.599999999999998px, #fad0e9 18.599999999999998px, #fad0e9 27.900000000000002px, transparent 27.900000000000002px, transparent 37.199999999999996px, #ebffcf 37.199999999999996px, #ebffcf 46.5px, transparent 46.5px, transparent 55.800000000000004px);
+}
+
+
+h1, h2, h3, p{
+    margin: 0;
+    padding: 0;
+}
+
+
 
 *{
     box-sizing: border-box;
 }
 
 .header h1{
-    margin-top: 0;
-}
+    margin: 15px;
+    padding: 5px;
+    font-family: "ham";
+    font-size: 50px;
+    color: var(--charcoal-brown);
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 10px;
+    }
 
 .header{
     width:auto;
@@ -30,46 +80,88 @@ html, body{
 
 
 .today-date{
-    background: white;
-    border-radius: 30px;
-    width: 20%;
+    background-image: linear-gradient(rgb(248, 255, 243), var(--frosted-mint));
+    border-radius: 15px;
+    width: 21%;
     padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
+    border: 2px solid var(--pink-carnation);
 }
 
 #today-day{
-    font-size: 20px;
-    margin:0;
-    padding: 0;
-
-}
-
-#today-full-date{
     font-size: 25px;
     margin:0;
     padding: 0;
 
 }
 
+#today-full-date{
+    font-size: 40px;
+    margin:0;
+    padding: 0;
+    font-family: "berky";
+    font-weight: 100;
+
+}
+
 #today-year{
-font-size: 18px;
+font-size: 25px;
+font-weight: 600;
 margin:0;
     padding: 0;
 }
 
 .plan{
-    background: white;
-    border-radius: 30px;
-    width: 39%;
+    background-image: linear-gradient(var(--floral-white), var(--petal-frost));
+    border-radius: 15px;
+    width: 38%;
+    border: 2px solid var(--pink-carnation);
+    padding: 20px;
+    
+   
+}
+
+.plan h2{
+    margin: 0;
+    font-size: 40px;
+    font-family: "berky";
+    font-weight: 100;
+    color: var(--charcoal-brown);
+}
+
+.plan li{
+    font-size: 25px;
+}
+
+.plan ul{
+    margin:0;
+    padding-left:20px;
 }
 
 .tasks-left{
     background: white;
-    border-radius: 30px;
+    border-radius: 15px;
     width: 39%;
+    border: 2px solid var(--pink-carnation);
+     padding: 20px;
+   
+}
+
+.tasks-left h3{
+    font-size: 40px;
+    margin: 0px;
+    font-family: "berky";
+    font-weight: 100;
+}
+
+#task-count{
+    text-decoration: underline;
+    font-weight: 600;
+    padding-left: 12px;
+    font-family: "Gaegu";
 }
 
 a{
@@ -80,7 +172,7 @@ a{
 .main{
     width: auto;
     height: 100vh;
-    background-color: rgb(255, 200, 200);
+    
     
     
 }
@@ -96,9 +188,10 @@ a{
 .calendar{
     width: 60%;
     margin: 20px;
-    background: #FCF9F0ff;
-    
-    
+    background: none;
+    font-family: "Gaegu";
+    font-size: 25px;
+    font-weight: 600;
 }
 
 .calendar-header{
@@ -107,6 +200,8 @@ a{
     justify-content: space-between;
     align-items: center;
     padding: 10px;
+    font-family: "berky";
+    font-size: 35px;
 }
 
 .calendar-grid{
@@ -117,8 +212,12 @@ a{
     
 }
 
+.weekday{
+    background: var(--pink-orchid);
+}
+
 .date{
-    background: pink;
+    background: var(--petal-frost);
     height: 10vh;
     border: 0.5px dotted white;
     display: flex;
@@ -137,9 +236,12 @@ a{
     justify-content: flex-start;
     width: 40%;
     margin-right: 20px;
-    
-    
-    
+}
+
+.main-side h2{
+    font-family: "berky";
+    font-weight: 100;
+    font-size: 40px;
 }
 
 .todolist{
@@ -172,15 +274,20 @@ a{
 
 #progress-bar{
     width: 100%;
-    height: 10px;
+    height: 20px;
     background-color: #DEFFAAff ;
     overflow: hidden;
+   margin-top:10px;
 }
 
 #progress-fill{
     width: 0;
     height: 100%;
     background-color: #40463Eff
+}
+
+.notes{
+    background: #DEFFAAff;
 }
 
 #notes-content{
